@@ -19,7 +19,34 @@ The tool recognizes and separates the following sections:
 4. Data Management and Sharing Plan
 5. Mentoring Plan
 6. Project Personnel and Partner Organizations
-7. Synergistic Activities
+7. Facilities, Equipment and Other Resources
+8. Synergistic Activities
+
+## Splitting Rules
+
+### Fixed Components (Order Guaranteed)
+- **Project Summary**: Page 1 (automatic)
+- **Project Description**: Pages 2-16 (automatic, always 15 pages)
+- **References Cited**: Pages 17+ until next section (automatic detection)
+
+### Variable Components (Order Not Determined)
+- **Data Management and Sharing Plan**
+- **Mentoring Plan**
+- **Project Personnel and Partner Organizations**
+- **Facilities, Equipment and Other Resources**
+- **Synergistic Activities**
+
+### Detection Algorithm
+1. Extract pages 1, 2-16 automatically for Summary and Description
+2. Extract pages 17+ as References Cited until next section is detected
+3. Detect remaining variable sections using fuzzy matching (approx. 70% similarity)
+4. Each section ends where the next one begins
+5. Last section extends to the end of the document
+
+### Key Requirements
+- **Each component must start on a new page** (guaranteed in input)
+- **Component names are approximate** (fuzzy matching handles variations like "Project Summary" vs "Summary of the Project")
+- **No explicit section headers required** (except for the 5 variable components)
 
 ## Installation
 
